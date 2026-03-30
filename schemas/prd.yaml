@@ -108,3 +108,53 @@ fields:
     type: array
     items: string
     description: "Unresolved questions flagged for follow-up"
+
+  # --- Healthcare/Machinify-specific fields ---
+
+  regulatory:
+    type: object
+    description: "Healthcare regulatory considerations — auto-populated when context is available"
+    fields:
+      hipaa_impact:
+        type: enum
+        values: [none, low, medium, high]
+        description: "Does this feature touch PHI, PII, or require BAA considerations?"
+      phi_exposure:
+        type: boolean
+        description: "Does this feature create, process, or display Protected Health Information?"
+      audit_trail_required:
+        type: boolean
+        description: "Does this feature need immutable audit logging for compliance?"
+      data_classification:
+        type: enum
+        values: [public, internal, confidential, restricted]
+        description: "Highest classification of data this feature handles"
+
+  platform_dependencies:
+    type: array
+    description: "Known Machinify platform systems this feature depends on"
+    items:
+      type: object
+      fields:
+        system:
+          type: string
+          description: "System name (ODA, Muxy, Citus, Spark, Studio, MacUI, etc.)"
+        dependency_type:
+          type: enum
+          values: [reads-from, writes-to, extends, replaces, blocks-on]
+        notes:
+          type: string
+
+  customer_impact:
+    type: array
+    description: "Which customers/payers are affected"
+    items:
+      type: object
+      fields:
+        customer:
+          type: string
+        impact:
+          type: string
+        priority:
+          type: enum
+          values: [primary, secondary, future]

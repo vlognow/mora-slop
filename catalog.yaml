@@ -32,6 +32,86 @@ skills:
     version: "1.0"
     estimated_time_saved: "30-60 min per update"
 
+  # --- Production skills (multi-step orchestrations) ---
+
+  - name: platform-pulse
+    path: skills/platform-pulse.md
+    tags: [pm, pulse, platform, notion, slack, weekly]
+    trigger: "Generate the weekly Platform Pulse from weekend updates, GitHub, Jira, and Slack"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "2-3 hours per week"
+    chain_position: "standalone or → platform-okr-update → weekly-update-entry"
+
+  - name: studio-pulse
+    path: skills/studio-pulse.md
+    tags: [pm, pulse, studio, notion, slack, weekly, github]
+    trigger: "Generate the weekly Studio Pulse from GitHub releases, Slack, and Jira"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "2-3 hours per week"
+    review_gate: true
+
+  - name: meeting-insights
+    path: skills/meeting-insights.md
+    tags: [pm, meetings, transcript, notion, analysis, intelligence]
+    trigger: "Analyze a meeting VTT transcript and produce a deep intelligence analysis"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "1-2 hours per meeting"
+
+  - name: cloud-cost-pulse
+    path: skills/cloud-cost-pulse.md
+    tags: [pm, pulse, cloud-cost, notion, slack, jira, weekly]
+    trigger: "Generate the weekly Cloud Cost Pulse from JIRA, GitHub, Slack, and Notion"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "2-3 hours per week"
+
+  - name: weekly-briefing
+    path: skills/weekly-briefing.md
+    tags: [pm, okr, weekly, notion, accountability, ritual]
+    trigger: "Run the Friday weekly OKR briefing — interview, health status, write to Notion"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "3-4 hours per week"
+
+  - name: platform-okr-update
+    path: skills/platform-okr-update.md
+    tags: [pm, okr, platform, notion, weekly, review-gated]
+    trigger: "Update Platform team OKR rows from the latest weekend update post"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "1-2 hours per week"
+    review_gate: true
+    chain_position: "platform-pulse → this → weekly-update-entry"
+
+  - name: weekly-update-entry
+    path: skills/weekly-update-entry.md
+    tags: [pm, weekly, stakeholder, notion, review-gated]
+    trigger: "Fill in the Data & Platform row in cross-team weekly product line updates"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "30-60 min per week"
+    review_gate: true
+    chain_position: "platform-pulse → platform-okr-update → this"
+
+  - name: daily-digest
+    path: skills/daily-digest.md
+    tags: [pm, slack, daily, digest, automation]
+    trigger: "Generate a daily digest of key Slack channels"
+    author: phil-mora
+    version: "2.0"
+    estimated_time_saved: "30-45 min per day"
+
+  - name: todo
+    path: skills/todo.md
+    tags: [pm, productivity, todo, persistent]
+    trigger: "/todo — persistent todo list with add, done, drop, update, blocked, wip, list"
+    author: phil-mora
+    version: "1.0"
+    estimated_time_saved: "15 min per day"
+
 schemas:
   - name: prd
     path: schemas/prd.yaml

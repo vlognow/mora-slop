@@ -1,52 +1,45 @@
-# Contributing to Department of Vibes
+# Contributing
 
-## The Fastest Path
+## Three Rules
 
+1. **It has to work.** You tested it in Claude Code. The output is something you'd actually send — to a stakeholder, to eng, to a customer — without editing.
+
+2. **Your name is on it.** The `author` field in the frontmatter is you. If it breaks or gets stale, that's on you. If you stop maintaining it, it gets archived.
+
+3. **Delete > accumulate.** A skill nobody's used in 60 days gets questioned. If nobody speaks up, it's gone. Dead skills are worse than no skills — they erode trust in the repo.
+
+That's it. No approval committee. No contribution quotas. No mandatory style beyond the YAML frontmatter (which exists for machine discovery, not bureaucracy).
+
+## How to Contribute
+
+**Fastest path:**
 1. Open Claude Code in this repo
-2. Run `/new-skill`
-3. Follow the guided workflow — it handles frontmatter, structure, and catalog entry
-4. Open a PR
+2. Run `/new-skill` — it walks you through everything
+3. Commit and push
 
-## Manual Contribution Flow
+**Manual path:**
+1. Copy `skills/SKILL-TEMPLATE.md`
+2. Fill in the YAML frontmatter
+3. Write the skill, test it, commit it
 
-1. Branch from `main`
-2. Copy `skills/SKILL-TEMPLATE.md` to `skills/your-skill-name.md`
-3. Fill in the YAML frontmatter (all fields required)
-4. Write the skill body (≤ 150 lines total)
-5. Add an example to `examples/your-skill-name/`
-6. Run `./scripts/validate.sh` — must pass clean
-7. Update `catalog.yaml` (or run `python3 scripts/generate-catalog.py`)
-8. Open a PR titled `[Skill] your-skill-name v1.0`
+Either way: if it works and your name is on it, ship it.
 
-## PR Checklist (enforced)
+## What Belongs Here
 
-- [ ] YAML frontmatter present and valid (name, version, author, tags, trigger, inputs, outputs)
-- [ ] Tested in Claude Code — actually ran it, not just wrote it
-- [ ] Human section ≤ 2 paragraphs
-- [ ] Total skill ≤ 150 lines
-- [ ] Example output in `examples/`
-- [ ] `catalog.yaml` updated
-- [ ] `./scripts/validate.sh` passes
+- Skills that save you real time and produce send-ready output
+- Schemas that define how we structure recurring artifacts
+- Prompts you find yourself reusing across projects
+- Hooks that automate things you'd otherwise forget
 
-## Skill Quality Bar
+## What Doesn't Belong Here
 
-**Ship it if:**
-- It saves ≥ 30 minutes per use
-- Someone else on the team would actually use it
-- The output is good enough to send without editing
+- Stubs and "I'll finish this later" drafts — commit when it works, not before
+- Skills that require 10 minutes of context to use
+- Anything where the output always needs heavy editing (that's a prompt, not a skill)
+- Code projects with their own dependencies — those get their own repos
 
-**Don't ship it if:**
-- It's a prompt you use once a quarter
-- It requires 10 minutes of setup/context to use
-- The output always needs heavy editing
+## Housekeeping
 
-## Naming Conventions
-
-- Skill files: `kebab-case.md` (e.g., `pm-prd-generator.md`)
-- Tags: lowercase, no spaces (e.g., `pm`, `jira`, `stakeholder`)
-- Versions: semver-ish — bump minor for improvements, major for breaking changes
-
-## Review Process
-
-- Tag `@phil-mora` for review (≤24h turnaround)
-- Low ceremony — if it works and follows the template, it ships
+- `catalog.yaml` should reflect what's actually in `skills/`. Run `python3 scripts/generate-catalog.py` if you're not sure.
+- `./scripts/validate.sh` catches missing frontmatter and catalog drift. Run it before pushing.
+- If you notice a skill is dead or broken, open a one-line PR to archive or remove it. No ceremony required.

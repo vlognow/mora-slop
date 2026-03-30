@@ -1,0 +1,81 @@
+# Stakeholder Brief Schema — Department of Vibes
+# Structured format for executive/stakeholder status updates.
+
+schema_version: "1.0"
+type: stakeholder-brief
+
+fields:
+  team:
+    type: string
+    required: true
+
+  period:
+    type: string
+    required: true
+    description: "e.g., 'Week of 2026-03-30' or 'Q1 2026'"
+
+  audience:
+    type: enum
+    values: [exec, engineering, cross-functional, external]
+    required: true
+    default: exec
+
+  bluf:
+    type: string
+    required: true
+    description: "One sentence — the most important thing the reader needs to know"
+
+  wins:
+    type: array
+    required: true
+    items:
+      type: object
+      fields:
+        outcome:
+          type: string
+          required: true
+          description: "Concrete outcome, not activity"
+        metric:
+          type: string
+          description: "Quantified impact if available"
+
+  risks:
+    type: array
+    items:
+      type: object
+      fields:
+        description:
+          type: string
+          required: true
+        severity:
+          type: enum
+          values: [red, yellow]
+          required: true
+        impact:
+          type: string
+        mitigation:
+          type: string
+        ask:
+          type: string
+          description: "What you need from the reader"
+
+  decisions_needed:
+    type: array
+    items:
+      type: object
+      fields:
+        decision:
+          type: string
+          required: true
+        options:
+          type: array
+          items: string
+        recommendation:
+          type: string
+          required: true
+          description: "Always include your lean"
+
+  next_period:
+    type: array
+    items: string
+    description: "Key deliverables or milestones for next period"

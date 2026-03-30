@@ -1,0 +1,69 @@
+# One-Pager Schema — Department of Vibes
+# Structured format for initiative proposals.
+# The human-readable version is rendered from this, not the other way around.
+
+schema_version: "1.0"
+type: one-pager
+
+fields:
+  title:
+    type: string
+    required: true
+
+  author:
+    type: string
+    required: true
+
+  date:
+    type: date
+    required: true
+
+  status:
+    type: enum
+    values: [draft, review, approved, rejected]
+    default: draft
+
+  bluf:
+    type: string
+    required: true
+    description: "One sentence — what you want and why. Reader decides in 10 seconds."
+
+  problem:
+    type: string
+    required: true
+    description: "2-3 sentences. What's broken, who feels it, how bad is it."
+
+  proposal:
+    type: string
+    required: true
+    description: "2-3 sentences. What we'll build/change and the expected outcome."
+
+  success_metric:
+    type: string
+    required: true
+    description: "The single number that proves this worked."
+
+  effort:
+    type: enum
+    values: [small, medium, large, xlarge]
+    required: true
+    description: "T-shirt size. Small = <1 sprint, Large = full quarter."
+
+  alternatives_considered:
+    type: array
+    items:
+      type: object
+      fields:
+        option:
+          type: string
+        why_not:
+          type: string
+
+  open_questions:
+    type: array
+    items: string
+
+  stakeholders:
+    type: array
+    items: string
+    description: "Who needs to approve or be informed"

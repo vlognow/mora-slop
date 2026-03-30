@@ -1,0 +1,110 @@
+# PRD Schema — Department of Vibes
+# Canonical structured format for Product Requirements Documents.
+# Skills that produce PRDs should output YAML matching this schema.
+
+schema_version: "1.0"
+type: prd
+
+fields:
+  name:
+    type: string
+    required: true
+    description: "kebab-case identifier for the feature"
+
+  title:
+    type: string
+    required: true
+    description: "Human-readable feature title"
+
+  owner:
+    type: string
+    required: true
+    description: "PM or lead responsible"
+
+  status:
+    type: enum
+    values: [draft, review, approved, in-progress, shipped]
+    required: true
+    default: draft
+
+  created:
+    type: date
+    required: true
+
+  problem:
+    type: object
+    required: true
+    fields:
+      statement:
+        type: string
+        required: true
+        description: "Clear problem statement — who has this problem and why it matters"
+      evidence:
+        type: array
+        items: string
+        description: "Data points, links, customer quotes supporting the problem"
+      who_feels_it:
+        type: array
+        items: string
+        description: "Personas or segments affected"
+
+  solution:
+    type: object
+    required: true
+    fields:
+      approach:
+        type: string
+        required: true
+        description: "High-level approach — what are we building"
+      jobs_to_be_done:
+        type: array
+        items: string
+        required: true
+        description: "User jobs this solution enables"
+      non_goals:
+        type: array
+        items: string
+        description: "Explicitly out of scope"
+
+  success_criteria:
+    type: array
+    required: true
+    items:
+      type: object
+      fields:
+        metric:
+          type: string
+          required: true
+        target:
+          type: string
+          required: true
+        measurement:
+          type: string
+          description: "How we'll measure this"
+
+  dependencies:
+    type: array
+    items: string
+    description: "Team, system, or data dependencies"
+
+  risks:
+    type: array
+    items:
+      type: object
+      fields:
+        risk:
+          type: string
+          required: true
+        likelihood:
+          type: enum
+          values: [low, medium, high]
+        impact:
+          type: enum
+          values: [low, medium, high]
+        mitigation:
+          type: string
+
+  open_questions:
+    type: array
+    items: string
+    description: "Unresolved questions flagged for follow-up"

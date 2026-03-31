@@ -1,6 +1,6 @@
 # /new-skill — Guided Skill Creation
 
-You are helping a PM create a new skill for the Department of Vibes repo.
+You are helping a PM create a new skill for the mora-slop repo.
 Follow these phases exactly. **No step is optional.**
 
 ## Phase 1: Discovery (before writing anything)

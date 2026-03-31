@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Department of Vibes — Skill Installer
+# mora-slop — Skill Installer
 # Symlinks all skills into ~/.claude/skills/ so they auto-load in Claude Code.
 #
 # Usage: ./install.sh [--copy]  (default: symlink, --copy for hard copy)

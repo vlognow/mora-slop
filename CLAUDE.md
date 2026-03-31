@@ -1,8 +1,8 @@
-# Department of Vibes — Project Instructions
+# mora-slop — Project Instructions
 
-> The CPO said code more. We took it personally.
+> It's slop, but it's my slop.
 
-This is the shared skill, prompt, and automation hub for the Product Management team.
+Phil Mora's PM automation lab. Skills, prompts, schemas, and automations built with Claude Code.
 Everything here is designed to be discovered and used by Claude Code automatically.
 
 ## Core Principle
@@ -11,7 +11,7 @@ Everything here is designed to be discovered and used by Claude Code automatical
 
 Every skill, schema, and template starts with structured YAML frontmatter.
 The human prose exists to explain — the YAML exists to execute.
-If it can't be parsed, it can't be automated.
+If it can't be parsed, it can't be automated. If the output isn't send-ready, it's actual slop and gets deleted.
 
 ## Repo Layout
 
@@ -24,7 +24,7 @@ prompt-library/      # Reusable prompts organized by function
   shared/            # Cross-functional prompts
 hooks/               # Claude Code hooks for automation
 scripts/             # Utility scripts (validation, catalog generation)
-examples/            # Real before/after outputs — show don't tell
+examples/            # Real before/after outputs — proof it's not just slop
 docs/                # Human-readable guides (kept minimal)
 .claude/commands/    # Slash commands for this repo
 .github/             # PR template, CI
@@ -40,8 +40,6 @@ catalog.yaml         # Machine-readable index of all skills
 Or just ask Claude: "What skills are available in this repo for [task]?"
 
 ## Fork-in-the-Road Decisions
-
-These are the "two ways to do it" moments. Follow these rules:
 
 | Situation | Use This | Not This |
 |-----------|----------|----------|
@@ -75,7 +73,6 @@ The `trigger` field is critical — it's how Claude (and humans) decide when to 
 - Human sections: max 2 short paragraphs + bullets. No fluff.
 - No hedging. No filler. No "it's worth noting that."
 - Length scales with complexity. Never padded. Never truncated when depth matters.
-- Skills ≤ 150 lines. If it's longer, split it.
 
 ## What We Decided Not to Automate
 
@@ -86,9 +83,8 @@ See `docs/REJECTED-AUTOMATIONS.md` — before building something new, check if w
 Run `./scripts/validate.sh` before pushing. It checks:
 - All skills have valid YAML frontmatter
 - All skills are listed in `catalog.yaml`
-- No skill exceeds 150 lines
-- Human sections are ≤ 2 paragraphs
 
 ## Contributing
 
 See `CONTRIBUTING.md` or run `/new-skill` in Claude Code while in this repo.
+Three rules: it works, your name is on it, delete > accumulate.

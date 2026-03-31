@@ -1,15 +1,15 @@
-# Onboarding — Department of Vibes
+# Onboarding — mora-slop
 
 ## 5-Minute Setup
 
 1. **Clone the repo**
    ```bash
-   git clone git@github.com:butchsonik/department-of-vibes.git
+   git clone git@github.com:butchsonik/mora-slop.git
    ```
 
 2. **Install skills**
    ```bash
-   cd department-of-vibes && ./install.sh
+   cd mora-slop && ./install.sh
    ```
    This symlinks all skills into `~/.claude/skills/`. They auto-load in every Claude Code session.
 
@@ -21,7 +21,7 @@
 
 4. **Browse the catalog**
    Open `catalog.yaml` to see all available skills, or ask Claude:
-   > "What skills are available in department-of-vibes for [my task]?"
+   > "What skills are available in mora-slop for [my task]?"
 
 ## Your First Contribution
 

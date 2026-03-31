@@ -1,4 +1,4 @@
-# Metrics — Department of Vibes
+# Metrics — mora-slop
 
 ## What We Track
 
@@ -21,7 +21,7 @@ When you ship a skill, add a row:
 
 ## How to Report
 
-After using a skill, drop a quick note in `#department-of-vibes`:
+After using a skill, drop a quick note in `#mora-slop`:
 - What skill you used
 - How long it would have taken manually
 - Whether you edited the output (and how much)

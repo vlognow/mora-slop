@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Department of Vibes — Skill Validator
+# mora-slop — Skill Validator
 # Checks all skills for required frontmatter, length, and catalog presence.
 
 set -euo pipefail

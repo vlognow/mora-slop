@@ -1,0 +1,9 @@
+*.db
+*.db-wal
+*.db-shm
+memories/
+reflections/
+projects.json
+__pycache__/
+*.pyc
+.DS_Store

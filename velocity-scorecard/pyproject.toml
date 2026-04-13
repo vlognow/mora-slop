@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "velocity-scorecard"
+version = "0.1.0"
+description = "Repo velocity scorecard — LLM-scored engineering metrics"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.40.0",
+    "click>=8.1",
+    "requests>=2.31",
+    "rich>=13.0",
+    "python-dotenv>=1.0",
+]
+
+[project.scripts]
+velocity-score = "velocity_scorecard.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -312,9 +312,8 @@ class LLMScorer:
         except json.JSONDecodeError:
             pass
 
-        # Try to extract JSON array or object from the response
+        # Fallback: find the outermost JSON structure if plain parse failed
         import re
-        # Find the first [ or { and match to closing bracket
         for start_char, end_char in [("[", "]"), ("{", "}")]:
             start = text.find(start_char)
             if start == -1:

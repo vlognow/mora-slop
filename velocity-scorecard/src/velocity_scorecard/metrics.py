@@ -18,6 +18,7 @@ def _parse_dt(s: str | None) -> datetime | None:
     return dt
 
 
+# Regex to detect AI-assisted PRs via co-author lines, bot names, or labels
 _AI_MARKERS = re.compile(
     r"co-authored-by:\s*claude|cursor_agent|claude|copilot|ai[\s\-_]generated",
     re.IGNORECASE,
@@ -28,6 +29,7 @@ class MetricsCalculator:
     """Computes throughput, cycle time, quality, and collaboration metrics."""
 
     def compute(self, prs: list[dict]) -> dict:
+        """Return throughput, cycle time, quality, and collaboration metrics for a set of PRs."""
         merged = [p for p in prs if p.get("merged_at")]
         return {
             "throughput": self._throughput(merged),
@@ -42,6 +44,7 @@ class MetricsCalculator:
 
     @staticmethod
     def _throughput(merged: list[dict]) -> dict:
+        """Count merged PRs and average line churn."""
         n = len(merged)
         additions = [p.get("additions", 0) for p in merged]
         deletions = [p.get("deletions", 0) for p in merged]
@@ -57,6 +60,7 @@ class MetricsCalculator:
 
     @staticmethod
     def _cycle_time(merged: list[dict]) -> dict:
+        """Compute median/p90 cycle time and first-review latency in hours."""
         cycle_hours: list[float] = []
         review_hours: list[float] = []
 
@@ -78,6 +82,7 @@ class MetricsCalculator:
                 review_hours.append((first_review - created).total_seconds() / 3600)
 
         def _percentile(data: list[float], pct: float) -> float:
+            """Linear interpolation percentile (matches numpy's default method)."""
             if not data:
                 return 0.0
             s = sorted(data)
@@ -98,6 +103,7 @@ class MetricsCalculator:
 
     @staticmethod
     def _quality(merged: list[dict]) -> dict:
+        """Estimate rework rate via file-overlap within 14 days, plus review comment density."""
         n = len(merged)
         if n == 0:
             return {"rework_rate": 0.0, "avg_review_comments": 0.0}
@@ -123,6 +129,8 @@ class MetricsCalculator:
         # Sort by merge time
         timeline.sort(key=lambda t: t[0])
 
+        # Count PRs that touch the same files as another PR merged within 14 days.
+        # This is a proxy for rework — re-touching recently changed code.
         rework_count = 0
         for i, (merged_at_i, files_i) in enumerate(timeline):
             if not files_i:
@@ -149,6 +157,7 @@ class MetricsCalculator:
 
     @staticmethod
     def _collaboration(prs: list[dict]) -> dict:
+        """Detect AI-authored PRs and compute average review count per PR."""
         n = len(prs)
         ai_count = 0
         total_reviews = 0

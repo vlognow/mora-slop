@@ -46,6 +46,7 @@ def render_scorecard(
 
     lines.append("")
 
+    # Show directional arrow if we have a prior RVI to compare against
     trend_str = ""
     if rvi_trend is not None:
         arrow = "\u2191" if rvi_trend > 0 else "\u2193" if rvi_trend < 0 else "\u2192"
@@ -102,6 +103,7 @@ def _bar(score: float, width: int = 10) -> str:
 
 
 def _truncate(s: str, length: int) -> str:
+    """Truncate string with an ellipsis if it exceeds length."""
     return s[:length - 1] + "\u2026" if len(s) > length else s
 
 
@@ -145,6 +147,7 @@ def _collab_detail(q: dict) -> str:
 
 
 def _fmt_hours(h: float) -> str:
+    """Format hours as minutes, hours, or days for display."""
     if h < 1:
         return f"{h * 60:.0f}m"
     if h < 48:

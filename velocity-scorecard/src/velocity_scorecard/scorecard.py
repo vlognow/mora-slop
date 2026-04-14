@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 
-# Dimension weights for RVI calculation
+# Dimension weights for the Repo Velocity Index (RVI), summing to 1.0
 _WEIGHTS: dict[str, float] = {
     "quality": 0.20,
     "throughput": 0.15,
@@ -23,6 +23,7 @@ class Scorecard:
     """Produces a scored velocity scorecard from quantitative metrics + LLM scores."""
 
     def compute(self, quantitative: dict, llm_scores: list[dict]) -> dict:
+        """Build the full scorecard: dimension scores, RVI, top signal, and SRAU stats."""
         dimensions = self._score_dimensions(quantitative, llm_scores)
         rvi = self._compute_rvi(dimensions)
         top_signal = self.generate_top_signal(dimensions, quantitative, llm_scores)
@@ -46,6 +47,7 @@ class Scorecard:
     def _score_dimensions(
         self, quantitative: dict, llm_scores: list[dict]
     ) -> dict[str, float]:
+        """Score each dimension on a 1-10 scale from quantitative and LLM inputs."""
         return {
             "throughput": self._score_throughput(quantitative),
             "cycle_time": self._score_cycle_time(quantitative),
@@ -53,7 +55,7 @@ class Scorecard:
             "complexity": self._score_complexity(llm_scores),
             "impact": self._score_impact(llm_scores),
             "collaboration": self._score_collaboration(quantitative),
-            "health": 5.0,  # placeholder — agent readiness requires repo analysis
+            "health": 5.0,  # placeholder — needs repo-level analysis (CI health, test coverage, etc.)
         }
 
     # ------------------------------------------------------------------
@@ -62,6 +64,7 @@ class Scorecard:
 
     @staticmethod
     def _score_throughput(q: dict) -> float:
+        """Score PR merge volume, nudged by net line additions as a durable-output proxy."""
         tp = q.get("throughput", {})
         merged = tp.get("prs_merged", 0)
 
@@ -95,6 +98,7 @@ class Scorecard:
 
     @staticmethod
     def _score_cycle_time(q: dict) -> float:
+        """Score based on median hours to merge -- faster is better."""
         ct = q.get("cycle_time", {})
         med = ct.get("median_hours", 48)
 
@@ -115,6 +119,7 @@ class Scorecard:
 
     @staticmethod
     def _score_quality(q: dict) -> float:
+        """Blend rework rate (60%) and review engagement (40%) into a quality score."""
         qual = q.get("quality", {})
         rework = qual.get("rework_rate", 0.0)
         avg_comments = qual.get("avg_review_comments", 0.0)
@@ -142,6 +147,7 @@ class Scorecard:
 
     @staticmethod
     def _score_complexity(llm_scores: list[dict]) -> float:
+        """Average of LLM-assigned technical difficulty across PRs."""
         vals = [s.get("technical_difficulty", 5) for s in (llm_scores or [])]
         if not vals:
             return 5.0
@@ -153,6 +159,7 @@ class Scorecard:
 
     @staticmethod
     def _score_impact(llm_scores: list[dict]) -> float:
+        """Average of LLM-assigned business value across PRs."""
         vals = [s.get("business_value", 5) for s in (llm_scores or [])]
         if not vals:
             return 5.0
@@ -164,6 +171,7 @@ class Scorecard:
 
     @staticmethod
     def _score_collaboration(q: dict) -> float:
+        """Blend AI adoption (50%) and review burden (50%), with diminishing returns at extremes."""
         collab = q.get("collaboration", {})
         ai_ratio = collab.get("ai_pr_ratio", 0.0)
         avg_reviews = collab.get("avg_reviews_per_pr", 0.0)
@@ -197,6 +205,7 @@ class Scorecard:
 
     @staticmethod
     def _compute_rvi(dimensions: dict[str, float]) -> float:
+        """Weighted composite of all dimensions, normalized to 0-100."""
         weighted_sum = sum(
             dimensions.get(dim, 5.0) * weight for dim, weight in _WEIGHTS.items()
         )
@@ -213,6 +222,7 @@ class Scorecard:
         quantitative: dict,
         llm_scores: list[dict],
     ) -> str:
+        """Return a one-sentence actionable finding for the dimension furthest from healthy (7.0)."""
         if not dimensions:
             return "Insufficient data to identify a top signal."
 
@@ -246,6 +256,7 @@ class Scorecard:
         quantitative: dict,
         llm_scores: list[dict],
     ) -> str:
+        """Generate a contextual message for the weakest dimension."""
         messages = {
             "throughput": lambda: (
                 f"Throughput is the biggest gap at {score}/10 "
@@ -288,6 +299,7 @@ class Scorecard:
         quantitative: dict,
         llm_scores: list[dict],
     ) -> str:
+        """Generate a contextual message for the strongest dimension."""
         messages = {
             "throughput": lambda: (
                 f"Throughput is a standout at {score}/10 "

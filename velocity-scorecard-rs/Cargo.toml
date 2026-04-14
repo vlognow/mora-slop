@@ -1,0 +1,41 @@
+[package]
+name        = "velocity-scorecard"
+version     = "0.1.0"
+edition     = "2024"
+description = "LLM-scored repo velocity measurement CLI"
+
+[[bin]]
+name = "velocity-score"
+path = "src/main.rs"
+
+[dependencies]
+clap       = { version = "4.5", features = ["derive", "wrap_help", "env"] }
+tokio      = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync"] }
+reqwest    = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+serde      = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow     = "1"
+thiserror  = "2"
+owo-colors = "4"
+tabwriter  = "1.4"
+chrono     = { version = "0.4", features = ["serde"] }
+regex      = "1"
+log        = "0.4"
+env_logger = "0.11"
+dotenvy    = "0.15"
+futures    = "0.3"
+dirs-next  = "2"
+
+[profile.release]
+lto           = true
+codegen-units = 1
+opt-level     = 3
+strip         = true
+panic         = "abort"
+
+[lints.rust]
+future_incompatible = { level = "deny", priority = 1 }
+rust_2018_idioms    = { level = "warn", priority = 3 }
+
+[lints.clippy]
+unwrap_used = "deny"

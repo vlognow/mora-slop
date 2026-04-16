@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.philmora.work-brain.friday-lint</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/phil.mora/work-brain/scripts/run-claude-task.sh</string>
+        <string>Run the full Friday wiki maintenance cycle:
+
+1. Check ~/work-brain/raw/ for unprocessed items (exclude processed/). If there are items, run the work-brain-ingest skill: read each item, create source notes, and PROPOSE concept/entity notes by posting proposals to #claude-phil (C0AP3B1EQK0) for Phil's review.
+
+2. Run the work-brain-lint skill: scan all wiki files, find orphans/broken links/gaps/stale notes, compress sessions/current-week.md, regenerate index.md, reindex semantic search (source ~/work-brain/.venv/bin/activate and python3 ~/work-brain/wiki_search.py reindex).
+
+3. Post the lint report summary to #claude-phil (C0AP3B1EQK0).
+
+4. Update ~/work-brain/log.md with both ingest and lint entries.
+
+Follow all rules in ~/work-brain/README.md. Propose, don't act on canonical content. Privacy rules are absolute.</string>
+        <string>friday-lint</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key><integer>5</integer>
+        <key>Hour</key><integer>16</integer>
+        <key>Minute</key><integer>7</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/phil.mora/work-brain/scripts/logs/friday-lint-stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/phil.mora/work-brain/scripts/logs/friday-lint-stderr.log</string>
+</dict>
+</plist>

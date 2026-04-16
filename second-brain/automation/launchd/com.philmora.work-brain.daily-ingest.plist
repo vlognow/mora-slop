@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.philmora.work-brain.daily-ingest</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/phil.mora/work-brain/scripts/run-claude-task.sh</string>
+        <string>Daily work brain ingest check. List files in ~/work-brain/raw/ (excluding processed/ and .DS_Store). If there are NO new files, post nothing and exit. If there ARE new files, run the work-brain-ingest skill: read each item, create source notes, PROPOSE concept/entity notes (do NOT create automatically), move processed files to raw/processed/{date}/, update index.md and log.md, and post a summary to #claude-phil (C0AP3B1EQK0). Follow all rules in ~/work-brain/README.md.</string>
+        <string>daily-ingest</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict>
+            <key>Weekday</key><integer>1</integer>
+            <key>Hour</key><integer>9</integer>
+            <key>Minute</key><integer>42</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>2</integer>
+            <key>Hour</key><integer>9</integer>
+            <key>Minute</key><integer>42</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>3</integer>
+            <key>Hour</key><integer>9</integer>
+            <key>Minute</key><integer>42</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>4</integer>
+            <key>Hour</key><integer>9</integer>
+            <key>Minute</key><integer>42</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>5</integer>
+            <key>Hour</key><integer>9</integer>
+            <key>Minute</key><integer>42</integer>
+        </dict>
+    </array>
+    <key>StandardOutPath</key>
+    <string>/Users/phil.mora/work-brain/scripts/logs/daily-ingest-stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/phil.mora/work-brain/scripts/logs/daily-ingest-stderr.log</string>
+</dict>
+</plist>

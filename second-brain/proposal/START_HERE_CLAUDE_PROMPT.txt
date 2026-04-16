@@ -1,0 +1,122 @@
+=====================================================================
+START HERE — PROMPT FOR WORK CLAUDE CODE SESSION
+=====================================================================
+
+INSTRUCTIONS FOR PHIL:
+1. Copy this entire file's contents (everything between the === lines below)
+2. On your work Mac, open Claude Code in a fresh session
+3. Make sure your working directory is where you AirDropped the Work-Second-Brain-Kit folder (cd into it)
+4. Paste the prompt below as your first message
+5. Let Claude drive from there
+
+=====================================================================
+COPY FROM HERE
+=====================================================================
+
+I want you to help me build a Karpathy-style personal knowledge wiki ("second brain") for my work knowledge on this machine. You have a complete, self-contained proposal document and a supporting blueprint library sitting in the current working directory. Please follow this sequence strictly:
+
+STEP 1 — Orient yourself
+
+Read these files in this exact order before doing anything else or asking me any questions:
+
+1. ./README.md                                                    (this kit's overview — 2 min read)
+2. ./Work_Karpathy_LLM_Wiki_Second_Brain_Proposal.md              (THE primary document — ~45 min full read; don't skim, read it)
+3. ./Claude-Blueprints-Work/02-personal-knowledge-management/README.md    (Blueprint 2 — the PKM deep-dive)
+4. ./Claude-Blueprints-Work/03-claude-agents-memory/README.md             (Blueprint 3 — the memory foundation)
+5. ./Claude-Blueprints-Work/reference/karpathy-sources.md                 (verified Karpathy quotes + URLs)
+6. ./Claude-Blueprints-Work/reference/anthropic-context-engineering.md    (Anthropic's Sept 2025 guide summary)
+
+While reading, ignore the specific case-study references to Hughes128 (a political campaign) and Butchsonic (a music project) — those are prior implementations, not context for my work wiki. The README.md in this kit explains which files mention them.
+
+Also browse (don't read in full, just skim for awareness):
+- ./Claude-Blueprints-Work/02-personal-knowledge-management/code-examples/  (wiki_search.py, wiki_lint.py, pkm_ingest.py — working code you may adapt)
+- ./Claude-Blueprints-Work/02-personal-knowledge-management/file-templates/  (richer template versions)
+
+When you're done reading, confirm by saying: "I've read the proposal and blueprints. I understand the Karpathy LLM wiki pattern, the three-layer architecture, the two mandatory navigation files (index.md and log.md), the four memory types, and the paraphrase-never-transcribe rule. Ready for Phase 0 discovery."
+
+STEP 2 — Phase 0 discovery (ask me questions before building)
+
+Do NOT create any files or directories yet. Instead, walk me through the 10 decisions in Section 13 of the proposal, one at a time or in small groups. Your job is to help me make informed choices, not to decide for me. For each decision, give me:
+- the options
+- your recommendation with a one-sentence reason
+- any constraint you think might apply to a work machine that I should consider
+
+The 10 decisions are:
+  1. Wiki location on disk
+  2. Frontend (Obsidian vs alternatives)
+  3. Version control (Git / cloud sync / local only)
+  4. Embedding provider (local vs OpenAI vs Voyage vs Cohere vs none)
+  5. Ingest task mode (manual vs scheduled)
+  6. Lint cadence (weekly day and time)
+  7. Privacy tier (strict / standard / permissive)
+  8. Scope of content (what belongs in the wiki, what doesn't)
+  9. Sharing posture (personal only vs shareable)
+  10. Seeding strategy (fresh notes only vs migrate existing)
+
+Also ask me these Phase 0 discovery questions from Section 8 of the proposal:
+  - What does my existing work knowledge look like? Where does it live today?
+  - What tooling constraints exist on this machine? (Can I install Obsidian, Python packages, run local embeddings, use external APIs? What about Git?)
+  - What are my top 3 active work projects? (These become the first projects/ files)
+  - What are 5-10 concepts I think about weekly? (These become the first concepts/ files)
+
+Save my answers to ./DISCOVERY.md for reference during implementation. Do not proceed to Phase 1 (scaffolding) until I explicitly say "proceed to Phase 1."
+
+STEP 3 — Bootstrap (follow Section 8 of the proposal, phases 1 through 10)
+
+Once I give you the green light, follow the bootstrap workflow in Section 8 of the proposal exactly:
+  Phase 1: Scaffold directories
+  Phase 2: Write wiki/README.md (the schema) using the template in Section 9.1
+  Phase 3: Create the two mandatory navigation files (wiki/index.md and wiki/log.md)
+  Phase 4: Seed with 5-10 real notes from my Phase 0 answers — write them in MY voice, paraphrased, with dense cross-references. Do NOT seed with generic examples.
+  Phase 5: Help me install and configure Obsidian (or my chosen frontend)
+  Phase 6: Set up the ingest task (manual mode first)
+  Phase 7: Set up the lint task
+  Phase 8: (Optional) Semantic search via wiki_search.py — use the code example from Claude-Blueprints-Work if it fits
+  Phase 9: Explain my daily and weekly routines
+  Phase 10: Schedule a 4-week check-in
+
+After each phase, stop and summarize what you did. Wait for my confirmation before moving to the next phase.
+
+STEP 4 — Hard constraints you must honor throughout
+
+1. Privacy rules from Section 11 are ABSOLUTE. No credentials, no PII, no client-confidential content, no regulated data anywhere in the wiki. When in doubt, quarantine to sandbox/ with a FLAG FOR REVIEW marker and ask me.
+
+2. Paraphrase, never transcribe. Every note is written in my voice. Never quote more than one sentence at a time from a source.
+
+3. index.md and log.md are MANDATORY. Every operation updates both. If you skip them, you're not following the Karpathy pattern.
+
+4. Propose, don't act, on anything touching canonical concept/entity/source/project content. Mechanical work (compressing sessions, fixing obvious broken links, regenerating the index) you can do directly. Anything else is a proposal that waits for my approval.
+
+5. Start small. 5-10 seed notes in Phase 4. Do NOT try to migrate my entire existing knowledge base on day one.
+
+6. Ask me before installing anything external. Check with me before: installing Obsidian, installing Python packages, calling external APIs, creating Git repos, setting up scheduled tasks.
+
+STEP 5 — When in doubt
+
+The proposal has answers to almost everything. Section 14 specifically tells you what to do first. If you're ever uncertain:
+  - Re-read the relevant section of the proposal
+  - Err on the side of asking me rather than guessing
+  - Keep the log.md updated with everything you do, so future sessions can pick up context
+
+Begin with Step 1 now. Read the six files in order. Report back when done.
+
+=====================================================================
+END OF PROMPT
+=====================================================================
+
+ALTERNATE SHORTER PROMPT (if you want to skip the formal structure):
+
+"Read everything in the current directory starting with README.md and Work_Karpathy_LLM_Wiki_Second_Brain_Proposal.md. When you're done, walk me through the 10 decisions in Section 13 of the proposal, then follow the bootstrap workflow in Section 8. Do not build anything until I've answered your questions and said 'proceed.' Privacy rules in Section 11 are absolute. Start now."
+
+=====================================================================
+TIPS FOR PHIL
+=====================================================================
+
+- The first session might take 60-90 minutes end-to-end (reading + discovery Q&A + phases 1-4). Block the time.
+- If you're short on time, you can do Steps 1-2 in the first session and come back for Step 3 later. Just save the DISCOVERY.md file so the next session has context.
+- The proposal document is ~15,000 words. Claude Opus 4.6 (1M context) can absorb it without strain. Claude Sonnet 4.6 should also handle it fine.
+- If the work Claude instance lacks 1M context, it may chunk the proposal — that's fine, the structure is modular.
+- After the initial bootstrap, you'll run the INGEST task roughly weekly (when you have raw/ material to process) and the LINT task weekly. Both start as manual in the first month.
+- Your job after bootstrap is NOT to migrate everything. Your job is to use the wiki during normal work — when you read something interesting, drop it in raw/. When a concept clicks, write an atomic note. Let growth be organic.
+
+=====================================================================

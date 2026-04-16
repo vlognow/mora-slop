@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.philmora.work-brain.daily-digest</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/phil.mora/work-brain/scripts/run-claude-task.sh</string>
+        <string>Run the daily digest skill. Follow ~/.claude/skills/daily-digest/SKILL.md exactly. Read all 14 Slack channels, scan 4 GitHub repos for PR activity, run Follow-Up Radar on Phil's open threads, do cross-channel synthesis against the wiki index, check wiki status, and flag wiki capture candidates. Post the full digest to #claude-phil (C0AP3B1EQK0). Split into two messages if over 4000 chars.</string>
+        <string>daily-digest</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict>
+            <key>Weekday</key><integer>1</integer>
+            <key>Hour</key><integer>5</integer>
+            <key>Minute</key><integer>3</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>2</integer>
+            <key>Hour</key><integer>5</integer>
+            <key>Minute</key><integer>3</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>3</integer>
+            <key>Hour</key><integer>5</integer>
+            <key>Minute</key><integer>3</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>4</integer>
+            <key>Hour</key><integer>5</integer>
+            <key>Minute</key><integer>3</integer>
+        </dict>
+        <dict>
+            <key>Weekday</key><integer>5</integer>
+            <key>Hour</key><integer>5</integer>
+            <key>Minute</key><integer>3</integer>
+        </dict>
+    </array>
+    <key>StandardOutPath</key>
+    <string>/Users/phil.mora/work-brain/scripts/logs/daily-digest-stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/phil.mora/work-brain/scripts/logs/daily-digest-stderr.log</string>
+</dict>
+</plist>

@@ -55,6 +55,7 @@ Two navigation files are **mandatory** (Karpathy's rule):
 second-brain/
 ├── README.md                          ← you are here
 ├── DISCOVERY.md                       ← Phase 0 decisions (10 choices + discovery Q&A)
+├── CLONE_PHIL_PLAN.md                 ← technical blueprint for the AI communication agent
 │
 ├── proposal/                          ← the documents that drove the bootstrap
 │   ├── Work_Karpathy_LLM_Wiki_Second_Brain_Proposal.md   (the 15K-word implementation spec)
@@ -79,6 +80,21 @@ second-brain/
 │       ├── decision-record.md
 │       ├── session-entry.md
 │       └── map-of-content.md
+│
+├── voice-corpus/                      ← Clone Phil's communication layer
+│   ├── README.md                      (what was harvested, how the agent uses it)
+│   ├── style-guide.md                 (319 lines — how Phil talks, by audience)
+│   ├── few-shot-library.md            (479 lines — 77 curated examples by situation)
+│   ├── heuristics.md                  (187 lines — how Phil decides, 6 domains)
+│   ├── HARVEST_MANIFEST.md            (all 43 harvest targets + status)
+│   ├── examples/                      (44 files — Phil's exact messages, categorized)
+│   │   ├── dm-cj-silverio.md            (847 lines — richest single source)
+│   │   ├── dm-kathy-kwan.md             (404 lines — highest volume DM)
+│   │   ├── recruiting-product-phil.md   (~120 substantive — hiring philosophy)
+│   │   └── ... (41 more channel/DM files)
+│   └── analysis/                      (24 files — per-source voice pattern analysis)
+│       ├── dm-cj-silverio-analysis.md
+│       └── ... (23 more)
 │
 ├── code/                              ← working Python scripts
 │   ├── wiki_search.py                 (file-level semantic search, SQLite + local embeddings)
